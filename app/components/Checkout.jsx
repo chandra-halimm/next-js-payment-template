@@ -12,7 +12,12 @@ const Checkout = () => {
   };
 
   const checkout = async () => {
-    alert("Checkout SNAP! 🌟")
+    const data = {
+      id: ,
+      productName: ,
+      price: ,
+      quantity:
+    }
   };
 
   const generatePaymentLink = async () => {
