@@ -1,4 +1,5 @@
 "use client";
+// tambah komen
 
 import Image from "next/image";
 import { product } from "./libs/product";
