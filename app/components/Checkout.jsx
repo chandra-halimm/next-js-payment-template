@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import product from "../libs/product";
 
 const Checkout = () => {
   const [quantity, setQuantity] = useState(1);
@@ -13,15 +14,15 @@ const Checkout = () => {
 
   const checkout = async () => {
     const data = {
-      id: ,
-      productName: ,
-      price: ,
-      quantity:
-    }
+      id: product.id,
+      productName: product.name,
+      price: product.price * quantity,
+      quantity: quantity,
+    };
   };
 
   const generatePaymentLink = async () => {
-    alert("Checkout Payment Link! 🔥")
+    alert("Checkout Payment Link! 🔥");
   };
 
   return (
