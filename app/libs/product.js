@@ -1,4 +1,4 @@
-export const product = {
+const product = {
   id: ~~(Math.random() * 100) + 1,
   image: "/img.png",
   name: "LEVI'S® WOMEN'S XL TRUCKER JACKET",
@@ -12,3 +12,5 @@ export const product = {
     { value: "kuning", label: "Kuning" },
   ],
 };
+
+module.exports = product;
