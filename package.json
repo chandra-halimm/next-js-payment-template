@@ -13,7 +13,8 @@
     "next": "13.5.4",
     "ngrok": "^5.0.0-beta.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-icons": "^5.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^10",
