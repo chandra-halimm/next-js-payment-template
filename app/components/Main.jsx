@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Main = () => {
   return (
@@ -7,16 +8,18 @@ const Main = () => {
       <div className="flex flex-row gap-x-10 items-center">
         <div className="grid grid-cols-2 items-center ">
           <div className="gap-y-4">
-            <p className="font-bold text-blue-700 text-3xl">
-              Salah Satu Percetakan Media Kor an di Jambi
+            <p className="font-bold text-blue-600 text-5xl my-3">
+              Lebih dari 8 Tahun Memberikan Layanan Terbaik
             </p>
-            <p className="my-4">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Molestiae quasi, non similique dolor necessitatibus doloribus.
+            <p className="my-5 text-slate-500">
+              Percayakan kebutuhan cetak koran Anda kepada kami dan biarkan kami
+              membantu Anda menyampaikan berita dengan cara yang paling efektif.
             </p>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Get Started
-            </button>
+            <Link href="sign-in">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Get Started
+              </button>
+            </Link>
           </div>
           <div className="flex justify-center items-center">
             <Image
@@ -32,7 +35,9 @@ const Main = () => {
       </div>
 
       <div>
-        <h3 className="text-center font-Medium text-xl mt-4">Partner Kami</h3>
+        <h3 className="text-center font-Medium text-xl mt-4 text-blue-600 font-medium">
+          Partner Kami
+        </h3>
       </div>
 
       <div className=" flex flex-row gap-x-2 justify-between">

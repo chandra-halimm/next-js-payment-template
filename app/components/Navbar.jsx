@@ -1,9 +1,15 @@
+"use client";
 import React from "react";
-import Link from "next/link";
 import { ImFont } from "react-icons/im";
+import { useUser, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
+import NavbarLogin from "./Navbar-login";
 
 const Navbar = () => {
-  return (
+  const { isLoaded, isSignedIn } = useUser();
+
+  if (!isLoaded) return <p>please wait...</p>;
+  return isSignedIn ? (
     <section className="container mx-auto py-5">
       <nav className="flex justify-between">
         <div>
@@ -11,31 +17,29 @@ const Navbar = () => {
             <ImFont className="text-2xl text-blue-600" />
           </Link>
         </div>
-        <ul className="flex flex-row gap-x-10 items-center">
-          <Link href="">
-            <li className=" font-medium hover:font-light">Home</li>
-          </Link>
-          <Link href="about">
-            <li className=" font-medium hover:font-light">About</li>
-          </Link>
-          <Link href="">
-            <li className=" font-medium hover:font-light">Profile</li>
-          </Link>
-        </ul>
-        <ul className="flex flex-row gap-x-10 items-center">
-          <Link href="">
-            <li className="text-blue-600 font-bold hover:text-blue-400">
-              Login
+        <div>
+          <ul className="flex flex-row gap-x-10 items-center">
+            <li className="font-medium hover:font-light">
+              <Link href="/">Home</Link>
             </li>
-          </Link>
-          <Link href="">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              <li>Sign Up</li>
-            </button>
-          </Link>
-        </ul>
+            <li className="font-medium hover:font-light">
+              <Link href="about">About</Link>
+            </li>
+            <li className="font-medium hover:font-light">
+              <Link href="profile">Profile</Link>
+            </li>
+            <li className="font-medium hover:font-light">
+              <Link href="pesan">Pesan</Link>
+            </li>
+            <li>
+              <UserButton afterSiggnOutUrl="/" />
+            </li>
+          </ul>
+        </div>
       </nav>
     </section>
+  ) : (
+    <NavbarLogin />
   );
 };
 
