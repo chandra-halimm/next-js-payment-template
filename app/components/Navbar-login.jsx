@@ -20,17 +20,17 @@ const Navbar = () => {
               <li className=" font-medium hover:font-light">About</li>
             </Link>
             <Link href="">
-              <li className=" font-medium hover:font-light">Profile</li>
+              <li className=" font-medium hover:font-light">Contact</li>
             </Link>
             <Link href="">
-              <li className=" font-medium hover:font-light">Profile</li>
+              <li className=" font-medium hover:font-light">Blog</li>
             </Link>
             <Link href="sign-in">
               <li className="text-blue-600 font-bold hover:text-blue-400">
                 Login
               </li>
             </Link>
-            <Link href="">
+            <Link href="sign-up">
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 <li>Sign Up</li>
               </button>

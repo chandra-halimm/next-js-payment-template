@@ -26,7 +26,10 @@ const Navbar = () => {
               <Link href="about">About</Link>
             </li>
             <li className="font-medium hover:font-light">
-              <Link href="profile">Profile</Link>
+              <Link href="contact">Contact</Link>
+            </li>
+            <li className="font-medium hover:font-light">
+              <Link href="blog">Blog</Link>
             </li>
             <li className="font-medium hover:font-light">
               <Link href="pesan">Pesan</Link>
