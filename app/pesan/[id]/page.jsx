@@ -146,9 +146,9 @@ const Page = () => {
                 <td className="py-2 px-4 border-b">{i + 1}</td>
                 <td className="py-2 px-4 border-b">{data.namaKoran}</td>
                 <td className="py-2 px-4 border-b">{data.eksemplar}</td>
-                <td className="py-2 px-4 border-b">{data.jumlahHalaman}</td>
-                <td className="py-2 px-4 border-b">{data.jumlahWarna}</td>
-                <td className="py-2 px-4 border-b">{data.harga}</td>
+                <td className="py-2 px-4 border-b">{data.koran?.halaman}</td>
+                <td className="py-2 px-4 border-b">{data.koran?.warna}</td>
+                <td className="py-2 px-4 border-b">{data.koran?.harga}</td>
               </tr>
             </tbody>
           </table>

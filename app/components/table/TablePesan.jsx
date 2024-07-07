@@ -37,7 +37,7 @@ const TablePesan = () => {
           clearInterval(printCheckInterval);
           printWindow.print();
         }
-      }, 3000);
+      }, 5000);
     } else {
       console.error("Failed to open the print window.");
     }
@@ -56,7 +56,6 @@ const TablePesan = () => {
               <th className="py-3 px-4 text-left">Eksemplar</th>
               <th className="py-3 px-4 text-left">Jumlah Halaman</th>
               <th className="py-3 px-4 text-left">Jumlah Warna</th>
-              <th className="py-3 px-4 text-left">Jumlah Plate</th>
               <th className="py-3 px-4 text-left">Total Harga</th>
               <th className="py-3 px-4 text-left">Status</th>
               <th className="py-3 px-4 text-left">Print</th>
@@ -68,20 +67,19 @@ const TablePesan = () => {
                 <td className="py-3 px-4">{index + 1}</td>
                 <td className="py-3 px-4">{data.order_id}</td>
                 <td className="py-3 px-4">{data.namaKoran}</td>
-                <td className="py-3 px-4">{data.keterangan}</td>
+                <td className="py-3 px-4">{data.koran?.keterangan}</td>
                 <td className="py-3 px-4">{data.eksemplar}</td>
-                <td className="py-3 px-4">{data.jumlahHalaman}</td>
-                <td className="py-3 px-4">{data.jumlahWarna}</td>
-                <td className="py-3 px-4">{data.jumlahPlate}</td>
+                <td className="py-3 px-4">{data.koran?.halaman}</td>
+                <td className="py-3 px-4">{data.koran?.warna}</td>
                 <td className="py-3 px-4">{data.gross_amount}</td>
                 <td
                   className={`py-3 px-4 ${
-                    data.status === "belum-dicetak"
+                    data.statusCetak === "belum-dicetak"
                       ? "bg-red-500 text-white"
                       : "bg-green-500 text-white"
                   }`}
                 >
-                  {data.status}
+                  {data.statusCetak}
                 </td>
                 <td className="py-3 px-4">
                   <button

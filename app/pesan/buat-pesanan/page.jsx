@@ -11,12 +11,24 @@ const Page = () => {
     isValid: false,
     email: "",
     phone: "",
+    harga: 0,
     id_koran: "",
     token: null,
+    statusCetak: "belum-dicetak",
   });
+  const [tipeKoran, setTipeKoran] = useState([]);
   const [orderID, setOrderID] = useState("");
 
   const { user } = useUser();
+
+  const dataKoran = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/koran");
+      setTipeKoran(response.data.data);
+    } catch (error) {
+      console.error("Error fetching koran data:", error);
+    }
+  };
 
   useEffect(() => {
     if (user && user.primaryEmailAddress) {
@@ -29,6 +41,7 @@ const Page = () => {
 
   useEffect(() => {
     setOrderID(localStorage.getItem("order_id") || "");
+    dataKoran();
   }, []);
 
   useEffect(() => {
@@ -87,10 +100,19 @@ const Page = () => {
 
   const handleData = (e) => {
     const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value,
-    });
+    if (name === "id_koran") {
+      const selectedKoran = tipeKoran.find((koran) => koran.id === value);
+      setData((prevState) => ({
+        ...prevState,
+        [name]: value,
+        harga: selectedKoran ? selectedKoran.harga : "",
+      }));
+    } else {
+      setData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
   const checkout = async () => {
@@ -128,45 +150,76 @@ const Page = () => {
     />
   );
 
-  const renderSelect = () => (
-    <form className="max-w-sm mx-auto">
-      <label
-        htmlFor="countries"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >
-        Select an option
-      </label>
-      <select
-        id="countries"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      >
-        <option selected>Choose a country</option>
-        <option value="US">United States</option>
-        <option value="CA">Canada</option>
-        <option value="FR">France</option>
-        <option value="DE">Germany</option>
-      </select>
-    </form>
-  );
-
   return (
     <div className="flex">
       <Sidebar />
       <div className="flex flex-col justify-center items-center w-full p-5">
         <div className="w-full max-w-2xl bg-white p-8 shadow-lg rounded-lg">
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            {renderInput("Nama Koran", "namaKoran")}
-            {renderInput("Eksemplar", "eksemplar", "number")}
-            <input type="hidden" name="email" value={data.email} />{" "}
-            {renderInput("Phone", "phone")}
-            {renderInput("id_koran", "id_koran")}
+          <div className="grid grid-row-1 gap-5 md:grid-row-2">
+            <form>
+              <label className="text-sm">Nama Koran</label>
+              {renderInput("Nama Koran", "namaKoran")}
+            </form>
+            <form>
+              <label className="text-sm">Eksemplar</label>
+              <input
+                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                name="eksemplar"
+                placeholder="Eksemplar"
+                onChange={handleData}
+              />
+            </form>
+            <input type="hidden" name="email" value={data.email} />
+            <form>
+              <label className="text-sm">Handhone</label>
+              {renderInput("Phone", "phone")}
+            </form>
+            <form className="max-full">
+              <select
+                id="countries"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                name="id_koran"
+                onChange={handleData}
+              >
+                <option value="" disabled selected>
+                  Pilih halaman dan warna
+                </option>
+                {tipeKoran.map((data, index) => (
+                  <option key={index} value={data.id}>
+                    {data.keterangan}
+                  </option>
+                ))}
+              </select>
+            </form>
+            <form>
+              <label className="text-sm">Harga satuan</label>
+              <input
+                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                name="harga"
+                onChange={handleData}
+                disabled
+                value={data.harga}
+              />
+            </form>
             <input
               className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
               name="isValid"
               onChange={handleData}
-              defaultValue={false}
-              hidden
+              value={data.isValid}
+              type="hidden"
             />
+            <form>
+              <label id="total" className="text-sm">
+                Total harga
+              </label>
+              <input
+                id="total"
+                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                onChange={handleData}
+                value={parseInt(data.harga * data.eksemplar) || 0}
+                disabled
+              />
+            </form>
           </div>
           <div className="mt-5">
             <button

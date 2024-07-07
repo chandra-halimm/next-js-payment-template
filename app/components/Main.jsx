@@ -3,6 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Main = () => {
+  const message =
+    "Halo, saya ingin menanyakan tentang cetak di monica intermedia grafika";
+  const phoneNumber = "0895342754470";
+
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+    message
+  )}`;
+
   return (
     <section className="container mx-auto my-5">
       <div className="flex flex-row gap-x-10 items-center">
@@ -34,8 +42,8 @@ const Main = () => {
         </div>
       </div>
 
-      <div>
-        <p className="text-center font-bold text-3xl mt-10 text-slate-600">
+      <div className="mt-5">
+        <p className="text-center font-bold text-3xl my-10 text-slate-600">
           Partner Kami
         </p>
         <p className="text-slate-500 text-center mt-3">
@@ -94,7 +102,7 @@ const Main = () => {
       <div className="flex flex-row gap-x-10 items-center my-10">
         <div className="w-1/2">
           <Image
-            src="/cetak.jpg"
+            src="/image/printing2.jpg"
             alt="Gedung Perusahaan"
             width={500}
             height={500}
@@ -187,11 +195,12 @@ const Main = () => {
           jangan ragu untuk menghubungi kami.
         </p>
         <div className="flex justify-center mt-5">
-          <Link href="/contact">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Hubungi Kami
-            </button>
-          </Link>
+          <button
+            onClick={() => window.open(whatsappUrl, "_blank")}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Hubungi Kami
+          </button>
         </div>
       </div>
     </section>
