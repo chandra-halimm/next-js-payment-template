@@ -6,11 +6,10 @@ import Link from "next/link";
 import NavbarLogin from "./Navbar-login";
 
 const Navbar = () => {
-  const { isLoaded, isSignedIn } = useUser();
+  const { isSignedIn } = useUser();
 
-  if (!isLoaded) return <p>please wait...</p>;
   return isSignedIn ? (
-    <section className="container mx-auto py-5">
+    <section className="container mx-auto py-5 no-print">
       <nav className="flex justify-between">
         <div>
           <Link href="/">

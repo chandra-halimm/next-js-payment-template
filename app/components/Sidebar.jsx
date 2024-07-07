@@ -1,8 +1,9 @@
 import React from "react";
+import Link from "next/link";
 
 const Sidebar = () => {
   return (
-    <>
+    <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
       <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4">
         <nav className="flex flex-col gap-1 min-w-[240px] p-2 font-sans text-base font-normal text-gray-700">
           <div
@@ -25,7 +26,7 @@ const Sidebar = () => {
                 ></path>
               </svg>
             </div>
-            Dashboard
+            <Link href={"/pesan"}>Dashboard</Link>
           </div>
           <div
             role="button"
@@ -47,36 +48,11 @@ const Sidebar = () => {
                 ></path>
               </svg>
             </div>
-            Buat Pesanan
+            <Link href={"/pesan/buat-pesanan"}>Buat Pesanan</Link>
           </div>
         </nav>
       </div>
-
-      <div className="w-full pt-5 px-4 mb-8 mx-auto">
-        <div className="text-sm text-gray-700 py-1">
-          Made with{" "}
-          <a
-            className="text-gray-700 font-semibold"
-            href="https://www.material-tailwind.com/docs/react/sidebar?ref=tailwindcomponents"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Material Tailwind
-          </a>{" "}
-          by{" "}
-          <a
-            href="https://www.creative-tim.com?ref=tailwindcomponents"
-            className="text-gray-700 font-semibold"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {" "}
-            Creative Tim
-          </a>
-          .
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 

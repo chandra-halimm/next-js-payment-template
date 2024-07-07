@@ -7,6 +7,8 @@ let snap = new Midtrans.Snap({
   clientKey: process.env.NEXT_PUBLIC_CLIENT,
 });
 
+console.log(snap);
+
 export async function POST(request) {
   const { id, name, price, quantity } = await request.json();
   let parameter = {

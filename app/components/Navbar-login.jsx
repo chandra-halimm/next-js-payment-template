@@ -4,7 +4,7 @@ import { ImFont } from "react-icons/im";
 
 const Navbar = () => {
   return (
-    <section className="container mx-auto py-5">
+    <section className="container mx-auto py-5 no-print">
       <nav className="flex justify-between">
         <div>
           <Link href="/">
