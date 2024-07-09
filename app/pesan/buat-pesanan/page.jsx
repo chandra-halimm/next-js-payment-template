@@ -15,6 +15,8 @@ const Page = () => {
     id_koran: "",
     token: null,
     statusCetak: "belum-dicetak",
+    id_barang: "",
+    quantity: "",
   });
   const [tipeKoran, setTipeKoran] = useState([]);
   const [orderID, setOrderID] = useState("");
@@ -106,6 +108,8 @@ const Page = () => {
         ...prevState,
         [name]: value,
         harga: selectedKoran ? selectedKoran.harga : "",
+        id_barang: selectedKoran.id_barang,
+        quantity: selectedKoran.plate,
       }));
     } else {
       setData((prevState) => ({

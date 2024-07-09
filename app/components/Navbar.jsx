@@ -22,10 +22,7 @@ const Navbar = () => {
               <Link href="/">Home</Link>
             </li>
             <li className="font-medium hover:font-light">
-              <Link href="about">About</Link>
-            </li>
-            <li className="font-medium hover:font-light">
-              <Link href="contact">Contact</Link>
+              <a href="#about">About</a>
             </li>
             <li className="font-medium hover:font-light">
               <Link href="blog">Blog</Link>
